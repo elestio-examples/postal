@@ -22,8 +22,8 @@ sleep 30s;
 UUID=`cat /proc/sys/kernel/random/uuid`
 PW_HASH=`/snap/bin/bcrypt-tool hash ${ADMIN_PASSWORD} 10`
 
-docker exec postal-mariadb mariadb -u root -ppostal postal -e "INSERT INTO users (id, uuid, email_address, password_digest, time_zone, admin) VALUES (1, '${UUID}', '${ADMIN_EMAIL}', '${PW_HASH}', 'UTC', 1);"
-docker exec postal-mariadb mariadb -u root -ppostal postal -e "UPDATE users SET password_digest=\"${PW_HASH}\" WHERE id='1';"
+docker-compose exec -T mariadb mariadb -u root -ppostal postal -e "INSERT INTO users (id, uuid, email_address, password_digest, time_zone, admin) VALUES (1, '${UUID}', '${ADMIN_EMAIL}', '${PW_HASH}', 'UTC', 1);"
+docker-compose exec -T mariadb mariadb -u root -ppostal postal -e "UPDATE users SET password_digest=\"${PW_HASH}\" WHERE id='1';"
 
 SECRET_KEY=${SECRET_KEY:-`openssl rand -hex 128`}
 
