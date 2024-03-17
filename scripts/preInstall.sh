@@ -4,8 +4,8 @@ set -o allexport; source .env; set +o allexport;
 apt install  -y git curl jq snapd
 snap install bcrypt-tool
 
-mkdir -p ./postal/{config,install,mariadb} && chown -R 1001:1001 /opt/app/ && cd /opt/app
-git clone https://postalserver.io/start/install /opt/app/postal/install
+mkdir -p ./postal/{config,install,mariadb} && chown -R 1001:1001 ./postal 
+git clone https://postalserver.io/start/install ./postal/install
 
 docker-compose up -d
 
