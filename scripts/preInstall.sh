@@ -11,11 +11,8 @@ docker-compose up -d
 
 sleep 30s;
 
-# POSTAL=/opt/app/postal/install
-# sed -i "s:/opt/postal/config:/opt/app/postal/config:g" /opt/app/postal/install/templates/docker-compose.yml
-# sed -i "s:/opt/postal/config:/opt/app/postal/config:g" /opt/app/postal/install/docker-compose.yml
-
-./postal/install/bin/postal bootstrap ${DOMAIN} ./postal/config
+PWD=$(pwd)
+./postal/install/bin/postal bootstrap ${DOMAIN} $PWD/postal/config
 ./postal/install/bin/postal initialize
 
 

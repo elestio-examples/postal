@@ -15,7 +15,7 @@ environments:
   - key: "ADMIN_PASSWORD"
     value: "random_password"
   - key: "MARIADB_ROOT_PASSWORD"
-    value: "random_password"
+    value: "postal"
   - key: "DOMAIN"
     value: "[CI_CD_DOMAIN]"
 config:
