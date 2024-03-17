@@ -1,0 +1,46 @@
+version: "3"
+services:
+  mariadb:
+    image: elestio/mariadb:11.0
+    restart: always
+    environment:
+      MARIADB_DATABASE: postal
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+    ports:
+      - 172.17.0.1:23116:3306
+    volumes:
+      - ./postal/mariadb:/var/lib/mysql
+
+  # web:
+  #   image: ghcr.io/postalserver/postal:${SOFTWARE_VERSION_TAG}
+  #   restart: always
+  #   command: postal web-server
+  #   network_mode: host
+  #   volumes:
+  #     - ./postal/config:/config
+
+  # smtp:
+  #   image: ghcr.io/postalserver/postal:${SOFTWARE_VERSION_TAG}
+  #   command: postal smtp-server
+  #   network_mode: host
+  #   cap_add:
+  #     - NET_BIND_SERVICE
+  #   volumes:
+  #     - ./postal/config:/config
+  #   restart: always
+
+  # worker:
+  #   image: ghcr.io/postalserver/postal:${SOFTWARE_VERSION_TAG}
+  #   command: postal worker
+  #   network_mode: host
+  #   volumes:
+  #     - ./postal/config:/config
+  #   restart: always
+
+  # runner:
+  #   profiles: ["tools"]
+  #   image: ghcr.io/postalserver/postal:${SOFTWARE_VERSION_TAG}
+  #   command: postal
+  #   network_mode: host
+  #   volumes:
+  #     - ./postal/config:/config
